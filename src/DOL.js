@@ -18,10 +18,6 @@ DOL.prototype.spawn = function() {
         if (this.vocabulary[el] != false) {
             newString += this.vocabulary[el];
             newString += ',';
-            // newString.concat(this.vocabulary[el]);
-            // newString.concat(',');
-            console.log(newString);
-            console.log(this.vocabulary[el]);
         } else {
             newString += el;
             newString += ',';

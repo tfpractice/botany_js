@@ -25,6 +25,7 @@ Turtle.prototype = Object.create(DOL.prototype);
 Turtle.prototype.forward = function(draw = true) {
     var dx = Math.cos(this.heading) * this.step;
     var dy = Math.sin(this.heading) * this.step;
+    console.log(this);
     this.position.x += dx;
     this.position.y += dy;
     this.points.push([this.position.x, this.position.y]);
@@ -40,4 +41,15 @@ Turtle.prototype.clockwise = function() {
 
 Turtle.prototype.counterClockwise = function() {
     this.heading -= this.delta;
+};
+
+Turtle.prototype.interpret = function() {
+    var splitString = this.string.split(',');
+    console.log(splitString);
+    splitString.forEach(function(el) {
+        if (this.commands[el] != false) {
+            // console.log(this.commands[el]);
+            this.commands[el].call(this);
+        }
+    }, this);
 };

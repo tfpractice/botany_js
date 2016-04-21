@@ -1,5 +1,8 @@
 describe('Turtle', () => {
-    var myTurtle = new Turtle(10, 15, 0);
+    var myTurtle;
+    beforeEach(function() {
+        myTurtle = new Turtle(10, 15, 0);
+    });
     describe('init', () => {
         it('is an instance of DOL', function() {
             expect(myTurtle instanceof DOL).toBeTrue();
@@ -30,6 +33,8 @@ describe('Turtle', () => {
             expect(myTurtle.position.x).not.toBe(10);
         });
         it('adds a point to the points array', function() {
+            myTurtle.forward();
+
             expect(myTurtle.points.length).toBe(2);
         });
     });
@@ -48,7 +53,13 @@ describe('Turtle', () => {
     describe('#counterClockwise', () => {
         it(' changes the heading by delta', function() {
             myTurtle.counterClockwise();
-            expect(myTurtle.heading).toBe(0);
+            expect(myTurtle.heading).toBe((Math.PI / -2));
+        });
+    });
+    describe('interpret', () => {
+        it('follows each of the commmands provided by the string', function() {
+            myTurtle.interpret();
+            expect(myTurtle.points.length).toBe(5);
         });
     });
 });

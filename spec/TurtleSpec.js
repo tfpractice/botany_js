@@ -25,6 +25,9 @@ describe('Turtle', () => {
         it('has a points array', function() {
             expect(myTurtle.points).toBeArray();
         });
+        it('has a stepFactor', function() {
+            expect(myTurtle.stepFactor).toBe(0.25);
+        });
 
     });
     describe('#forward', () => {
@@ -60,6 +63,12 @@ describe('Turtle', () => {
         it('follows each of the commmands provided by the string', function() {
             myTurtle.interpret();
             expect(myTurtle.points.length).toBe(5);
+        });
+    });
+    describe('spawn', () => {
+        it('changes the step bu=y stepFactor', function() {
+            myTurtle.spawn();
+            expect(myTurtle.step).toBe(10);
         });
     });
 });

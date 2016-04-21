@@ -28,7 +28,6 @@ Turtle.prototype = Object.create(DOL.prototype);
 Turtle.prototype.forward = function(draw = true) {
     var dx = Math.cos(this.heading) * this.step;
     var dy = Math.sin(this.heading) * this.step;
-    // console.log(this);
     this.position.x += dx;
     this.position.y += dy;
     this.points.push([this.position.x, this.position.y]);
@@ -48,16 +47,16 @@ Turtle.prototype.counterClockwise = function() {
 
 Turtle.prototype.interpret = function() {
     var splitString = this.string.split(',');
-    // console.log(splitString);
     splitString.forEach(function(el) {
         if (this.commands[el] != false) {
-            // console.log(this.commands[el]);
             this.commands[el].call(this);
         }
     }, this);
 };
-Turtle.prototype.spawn = function() {
-    DOL.prototype.spawn.call(this);
-    this.step *= this.stepFactor;
+Turtle.prototype.spawn = function(depth = 1) {
+    for (var i = depth - 1; i >= 0; i--) {
+        DOL.prototype.spawn.call(this);
+        this.step *= this.stepFactor;
+    }
 
 };

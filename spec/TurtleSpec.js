@@ -16,12 +16,27 @@ describe('Turtle', () => {
         it('has a delta attr', function() {
             expect(myTurtle.delta).toBeNumber();
         });
+        it('has a commands object', function() {
+            expect(myTurtle.commands).toBeObject();
+        });
+        it('has a points array', function() {
+            expect(myTurtle.points).toBeArray();
+        });
 
     });
     describe('#forward', () => {
         it('changes the position of the turtle by sin and cos of delta', function() {
             myTurtle.forward();
-            expect(myTurtle.position.y).not.toBe(15);
+            expect(myTurtle.position.x).not.toBe(10);
+        });
+        it('adds a point to the points array', function() {
+            expect(myTurtle.points.length).toBe(2);
+        });
+    });
+    describe('blankForward', () => {
+        it('changes the position of the turtle by sin and cos of delta', function() {
+            myTurtle.blankForward();
+            expect(myTurtle.position.x).not.toBe(10);
         });
     });
     describe('#clockwise', () => {

@@ -5,36 +5,37 @@ function Turtle(x = 0, y = 0, head = 0, step = 40, delta = Math.PI / 2, system) 
         '+': '+'
     };
     DOL.call(this, initVocab, 'F,-,F,-,F,-,F');
-    this.position = {
-        x: x,
-        y: y
-    };
-    this.heading = head;
+    // this.position = {
+    //     x: x,
+    //     y: y
+    // };
+    this.position = new p5.Vector(x, y);
+    this.startPosition = this.position.copy();
+    this.hVector = new p5.Vector.fromAngle(head).mult(step);
+
+    this.heading = this.hVector.heading();
     this.step = step;
     this.delta = delta;
     this.stepFactor = 0.25;
-    this.points = new Array([this.position.x, this.position.y]);
+    this.points = new Array(this.position);
     this.commands = {
         F: this.forward,
         f: this.blankForward,
         '-': this.clockwise,
         '+': this.counterClockwise
     };
-    this.pLoc = new p5.Vector(x, y);
-    this.startPosition = this.pLoc.copy();
-    this.hVector = new p5.Vector.fromAngle(head).mult(step);
     console.log(this.hVector);
 }
 Turtle.prototype = Object.create(DOL.prototype);
 
 Turtle.prototype.forward = function(draw = true) {
-    this.pLoc.add(this.hVector);
-    console.log(this.pLoc);
-    var dx = Math.cos(this.heading) * this.step;
-    var dy = Math.sin(this.heading) * this.step;
-    this.position.x += dx;
-    this.position.y += dy;
-    this.points.push([this.position.x, this.position.y]);
+    this.position.add(this.hVector);
+    console.log(this.position);
+    // var dx = Math.cos(this.heading) * this.step;
+    // var dy = Math.sin(this.heading) * this.step;
+    // this.position.x += dx;
+    // this.position.y += dy;
+    this.points.push(this.position);
     console.log('postion');
 };
 
@@ -43,15 +44,18 @@ Turtle.prototype.blankForward = function() {
 };
 
 Turtle.prototype.clockwise = function() {
-    this.heading += this.delta;
-    this.hVector.rotate(this.heading);
+    // this.heading += this.delta;
+    this.hVector.rotate(this.delta);
+    this.heading = this.hVector.heading();
     console.log(this.heading);
 
 };
 
 Turtle.prototype.counterClockwise = function() {
-    this.heading -= this.delta;
-    this.hVector.rotate(-1 * (this.heading));
+    // this.heading -= this.delta;
+    this.hVector.rotate(-1 * (this.delta));
+    this.heading = this.hVector.heading();
+
     console.log(this.heading);
 
 

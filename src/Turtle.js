@@ -1,6 +1,6 @@
 function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system) {
     var initVocab = {
-        F: 'F,-,F,+,F,F,-,F,-,F,+,F',
+        F: 'F,-,F,+,F,+,F,F,-,F,-,F,+,F',
         '-': '-',
         '+': '+'
     };
@@ -26,22 +26,20 @@ Turtle.prototype = Object.create(DOL.prototype);
 Turtle.prototype.getHeading = function() {
     this.heading = this.hVector.heading();
 };
+Turtle.prototype.resetMag = function() {
+    this.hVector.setMag(this.step);
+};
+Turtle.prototype.scaleStep = function() {
+    this.step *= this.stepFactor;
+    this.resetMag();
+};
 
 Turtle.prototype.forward = function(draw = true) {
-    console.log('old position');
-    console.log(this.position);
     this.position = p5.Vector.add(this.position, this.hVector);
     var newPos = this.position;
     this.position.add(this.hVector);
-    console.log('new position');
-    console.log(newPos);
-    console.log('n position');
-    console.log('this position');
-    console.log(this.position);
     this.points.push(newPos);
-    this.points.forEach(function(pt) {
-        console.log(pt);
-    }, this);
+    this.points.forEach(function(pt) {}, this);
 };
 
 Turtle.prototype.blankForward = function() {
@@ -59,9 +57,14 @@ Turtle.prototype.counterClockwise = function() {
 };
 
 Turtle.prototype.interpret = function() {
-    var splitString = this.string.split(',');
+    console.log(this.step);
+    var splitString = this.string.split(',').filter(function(el) {
+        return el.length > 0;
+    }, this);
+    console.log(splitString);
     splitString.forEach(function(el) {
         if (this.commands[el] != false) {
+            console.log(el);
             this.commands[el].call(this);
         }
     }, this);
@@ -70,7 +73,7 @@ Turtle.prototype.interpret = function() {
 Turtle.prototype.spawn = function(depth = 1) {
     for (var i = depth - 1; i >= 0; i--) {
         DOL.prototype.spawn.call(this);
-        this.step *= this.stepFactor;
+        this.scaleStep();
     }
 };
 

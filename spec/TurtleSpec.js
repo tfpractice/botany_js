@@ -37,6 +37,19 @@ describe('Turtle', () => {
             expect(myTurtle.heading).toBeNumber();
         });
     });
+    describe('resetMag()', () => {
+        it('chnages the magnitude of the hVector', function() {
+            myTurtle.step = 20;
+            myTurtle.resetMag();
+            expect(myTurtle.hVector.mag()).toBe(20);
+        });
+    });
+    describe('scaleStep()', () => {
+        it('multiplies step by stepFactor and resets mag', function() {
+            myTurtle.scaleStep();
+            expect(myTurtle.step).toBe(100);
+        });
+    });
     describe('#forward', () => {
         it('changes the position of the turtle by sin and cos of delta', function() {
             myTurtle.forward();
@@ -86,6 +99,8 @@ describe('Turtle', () => {
     });
     describe('display()', () => {
         it('draws lines between each of the points', function() {
+            // myTurtle.interpret();
+            myTurtle.spawn();
             myTurtle.interpret();
             myTurtle.display();
         });

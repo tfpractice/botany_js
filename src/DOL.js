@@ -13,7 +13,7 @@ DOL.prototype.addVocab = function(pred, succ) {
 DOL.prototype.spawn = function() {
     var splitString = this.string.split(',');
     console.log(splitString);
-    var newString = new String('');
+    var newString = new String();
     splitString.forEach(function(el) {
         if (this.vocabulary[el] != false) {
             newString += this.vocabulary[el];

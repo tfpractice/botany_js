@@ -5,38 +5,44 @@ function Turtle(x = 0, y = 0, head = 0, step = 40, delta = Math.PI / 2, system) 
         '+': '+'
     };
     DOL.call(this, initVocab, 'F,-,F,-,F,-,F');
-    // this.position = {
-    //     x: x,
-    //     y: y
-    // };
     this.position = new p5.Vector(x, y);
     this.startPosition = this.position.copy();
     this.hVector = new p5.Vector.fromAngle(head).mult(step);
-
-    this.heading = this.hVector.heading();
+    this.getHeading();
     this.step = step;
     this.delta = delta;
     this.stepFactor = 0.25;
-    this.points = new Array(this.position);
+    this.points = [this.position];
+    // this.points.push(this.position);
     this.commands = {
         F: this.forward,
         f: this.blankForward,
         '-': this.clockwise,
         '+': this.counterClockwise
     };
-    console.log(this.hVector);
 }
+
 Turtle.prototype = Object.create(DOL.prototype);
 
+Turtle.prototype.getHeading = function() {
+    this.heading = this.hVector.heading();
+};
+
 Turtle.prototype.forward = function(draw = true) {
-    this.position.add(this.hVector);
+    console.log('old position');
     console.log(this.position);
-    // var dx = Math.cos(this.heading) * this.step;
-    // var dy = Math.sin(this.heading) * this.step;
-    // this.position.x += dx;
-    // this.position.y += dy;
-    this.points.push(this.position);
-    console.log('postion');
+    this.position = p5.Vector.add(this.position, this.hVector);
+    var newPos = this.position;
+    this.position.add(this.hVector);
+    console.log('new position');
+    console.log(newPos);
+    console.log('n position');
+    console.log('this position');
+    console.log(this.position);
+    this.points.push(newPos);
+    this.points.forEach(function(pt) {
+        console.log(pt);
+    }, this);
 };
 
 Turtle.prototype.blankForward = function() {
@@ -44,21 +50,13 @@ Turtle.prototype.blankForward = function() {
 };
 
 Turtle.prototype.clockwise = function() {
-    // this.heading += this.delta;
     this.hVector.rotate(this.delta);
-    this.heading = this.hVector.heading();
-    console.log(this.heading);
-
+    this.getHeading();
 };
 
 Turtle.prototype.counterClockwise = function() {
-    // this.heading -= this.delta;
     this.hVector.rotate(-1 * (this.delta));
-    this.heading = this.hVector.heading();
-
-    console.log(this.heading);
-
-
+    this.getHeading();
 };
 
 Turtle.prototype.interpret = function() {
@@ -75,5 +73,14 @@ Turtle.prototype.spawn = function(depth = 1) {
         DOL.prototype.spawn.call(this);
         this.step *= this.stepFactor;
     }
+};
 
+Turtle.prototype.display = function() {
+    stroke('#00ff00');
+    beginShape();
+    for (var i = this.points.length - 1; i > 0; i--) {
+        vertex(this.points[i].x, this.points[i].y);
+        vertex(this.points[i - 1].x, this.points[i - 1].y);
+    }
+    endShape(CLOSE);
 };

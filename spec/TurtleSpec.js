@@ -28,7 +28,14 @@ describe('Turtle', () => {
         it('has a stepFactor', function() {
             expect(myTurtle.stepFactor).toBe(0.25);
         });
-
+        it('has an hVector', function() {
+            expect(myTurtle.hVector).toBeObject();
+        });
+    });
+    describe('getHeading()', () => {
+        it('retrives the heading from the hVector', function() {
+            expect(myTurtle.heading).toBeNumber();
+        });
     });
     describe('#forward', () => {
         it('changes the position of the turtle by sin and cos of delta', function() {
@@ -75,6 +82,12 @@ describe('Turtle', () => {
                 myTurtle.spawn(2);
                 expect(myTurtle.step).toBe(2.5);
             });
+        });
+    });
+    describe('display()', () => {
+        it('draws lines between each of the points', function() {
+            myTurtle.interpret();
+            myTurtle.display();
         });
     });
 });

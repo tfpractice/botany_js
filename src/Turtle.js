@@ -1,10 +1,10 @@
 function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system) {
-    var initVocab = {
+    this.system = system || new DOL({
         F: 'F,-,F,+,F,+,F,F,-,F,-,F,+,F',
         '-': '-',
         '+': '+'
-    };
-    DOL.call(this, initVocab, 'F,-,F,-,F,-,F');
+    }, 'F,-,F,-,F,-,F');
+    DOL.call(this, this.system.vocabulary, this.system.axiom);
     this.position = new p5.Vector(x, y);
     this.startPosition = this.position.copy();
     this.hVector = new p5.Vector.fromAngle(head).mult(step);
@@ -72,6 +72,7 @@ Turtle.prototype.spawn = function(depth = 1) {
 };
 
 Turtle.prototype.display = function() {
+    this.interpret();
     stroke('#00ff00');
     beginShape();
     for (var i = this.points.length - 1; i > 0; i--) {

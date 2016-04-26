@@ -100,7 +100,7 @@ describe('Turtle', () => {
     describe('display()', () => {
         it('draws lines between each of the points', function() {
             // myTurtle.interpret();
-            myTurtle.spawn();
+            myTurtle.spawn(2);
             myTurtle.interpret();
             myTurtle.display();
         });

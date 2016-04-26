@@ -57,14 +57,8 @@ Turtle.prototype.counterClockwise = function() {
 };
 
 Turtle.prototype.interpret = function() {
-    console.log(this.step);
-    var splitString = this.string.split(',').filter(function(el) {
-        return el.length > 0;
-    }, this);
-    console.log(splitString);
-    splitString.forEach(function(el) {
+    this.splitFilter().forEach(function(el) {
         if (this.commands[el] != false) {
-            console.log(el);
             this.commands[el].call(this);
         }
     }, this);

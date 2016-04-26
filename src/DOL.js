@@ -9,12 +9,14 @@ function DOL(vocab = {
 DOL.prototype.addVocab = function(pred, succ) {
     this.vocabulary[pred] = succ;
 };
-
+DOL.prototype.splitFilter = function() {
+    return this.string.split(',').filter(function(el) {
+        return el.length > 0;
+    }, this);
+};
 DOL.prototype.spawn = function() {
-    var splitString = this.string.split(',');
-    console.log(splitString);
     var newString = new String();
-    splitString.forEach(function(el) {
+    this.splitFilter().forEach(function(el) {
         if (this.vocabulary[el] != false) {
             newString += this.vocabulary[el];
             newString += ',';

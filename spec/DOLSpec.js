@@ -22,6 +22,11 @@ describe('DOL', () => {
             expect(myDOL.string.length).toBeGreaterThan(1);
         });
     });
+    describe('splitFilter', () => {
+        it('returns an array of non-empty strings to be interpreted', function() {
+            expect(myDOL.splitFilter()).toBeArray();
+        });
+    });
     describe('addVocab', function() {
         it('modifies the vocabulary with new predecessor-successor productions', function() {
             myDOL.addVocab('ar', 'albr')

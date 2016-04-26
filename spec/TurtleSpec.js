@@ -75,12 +75,12 @@ describe('Turtle', () => {
     describe('spawn', () => {
         it('changes the step by stepFactor', function() {
             myTurtle.spawn();
-            expect(myTurtle.step).toBe(10);
+            expect(myTurtle.step).toBe(100);
         });
         describe('when given depth param', () => {
             it('reduces the step by stepFactor^depth', function() {
                 myTurtle.spawn(2);
-                expect(myTurtle.step).toBe(2.5);
+                expect(myTurtle.step).toBe(25);
             });
         });
     });

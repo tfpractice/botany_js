@@ -1,4 +1,4 @@
-function Turtle(x = 0, y = 0, head = 0, step = 40, delta = Math.PI / 2, system) {
+function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system) {
     var initVocab = {
         F: 'F,-,F,+,F,F,-,F,-,F,+,F',
         '-': '-',
@@ -13,7 +13,6 @@ function Turtle(x = 0, y = 0, head = 0, step = 40, delta = Math.PI / 2, system) 
     this.delta = delta;
     this.stepFactor = 0.25;
     this.points = [this.position];
-    // this.points.push(this.position);
     this.commands = {
         F: this.forward,
         f: this.blankForward,

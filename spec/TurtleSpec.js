@@ -37,6 +37,18 @@ describe('Turtle', () => {
             expect(myTurtle.heading).toBeNumber();
         });
     });
+    describe('setDelta', function() {
+        it('assigns the delta value', function() {
+            myTurtle.setDelta(Math.PI / 4);
+            expect(myTurtle.delta).toBe(Math.PI / 4);
+        });
+    });
+    describe('setStep', function() {
+        it('assigns the step value', function() {
+            myTurtle.setStep(20);
+            expect(myTurtle.step).toBe(20);
+        });
+    });
     describe('resetMag()', () => {
         it('chnages the magnitude of the hVector', function() {
             myTurtle.step = 20;
@@ -99,7 +111,7 @@ describe('Turtle', () => {
     });
     describe('display()', () => {
         it('draws lines between each of the points', function() {
-            myTurtle.spawn(3);
+            // myTurtle.spawn(1);
             // myTurtle.interpret();
             myTurtle.display();
         });

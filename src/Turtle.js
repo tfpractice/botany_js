@@ -9,6 +9,7 @@ function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system)
     this.startPosition = this.position.copy();
     this.hVector = new p5.Vector.fromAngle(head).mult(step);
     this.getHeading();
+
     this.step = step;
     this.delta = delta;
     this.stepFactor = 0.25;
@@ -26,12 +27,23 @@ Turtle.prototype = Object.create(DOL.prototype);
 Turtle.prototype.getHeading = function() {
     this.heading = this.hVector.heading();
 };
+
+Turtle.prototype.setDelta = function(dVal) {
+    this.delta = dVal;
+};
+Turtle.prototype.setStep = function(sVal = 1) {
+    this.step = sVal;
+    this.resetMag();
+};
 Turtle.prototype.resetMag = function() {
     this.hVector.setMag(this.step);
 };
 Turtle.prototype.scaleStep = function() {
     this.step *= this.stepFactor;
     this.resetMag();
+};
+Turtle.prototype.setSystem = function() {
+    // body...
 };
 
 Turtle.prototype.forward = function(draw = true) {

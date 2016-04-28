@@ -19,6 +19,9 @@ describe('TSystem', function() {
         it('has an axiom', function() {
             expect(mySystem.axiom).toBeString();
         });
+        it('has a stepFactor', function() {
+            expect(mySystem.stepFactor).toBeNumber();
+        });
     });
     describe('addVocab()', function() {
         it('adds a vocabulary term with null commandKey and successor', function() {

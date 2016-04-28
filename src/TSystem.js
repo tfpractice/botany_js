@@ -1,7 +1,7 @@
-function 
-TSystem(step = 200, delta = Math.PI / 2) {
+function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25) {
     this.step = step;
     this.delta = delta;
+    this.stepFactor = sFactor;
     this.vocabulary = {
         '+': {
             command: '+',

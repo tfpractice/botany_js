@@ -13,5 +13,17 @@ describe('TSystem', function() {
         it('has a vocabulary', function() {
             expect(mySystem.vocabulary).toBeObject();
         });
+        it('has a string', function() {
+            expect(mySystem.string).toBeString();
+        });
+        it('has an axiom', function() {
+            expect(mySystem.axiom).toBeString();
+        });
+    });
+    describe('addVocab', function() {
+        it('adds a vocabulary term with null commandKey and successor', function() {
+            mySystem.addVocab('L');
+            expect(mySystem.vocabulary['L']).toBeObject();
+        });
     });
 });

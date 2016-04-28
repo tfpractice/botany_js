@@ -45,4 +45,29 @@ describe('TSystem', function() {
             expect(mySystem.vocabulary['R'].command).toBeString();
         });
     });
+    describe('setAxiom', () => {
+        it('sets the axiom string', function() {
+            mySystem.setAxiom('F,-,F-,F,-F,-');
+            console.log(mySystem.axiom);
+
+            expect(mySystem.axiom.length).not.toBe(0);
+        });
+    });
+    describe('getMissingVocab()', () => {
+        it('returns unaccounted elements', function() {
+            expect(mySystem.getMissingVocab()).toBeArray();
+        });
+    });
+    describe('createMissingVocab()', () => {
+        it('adds missing elements to the dictionary', function() {
+
+        });
+    });
+    // describe('spawn()', () => {
+    // it('replaces each comma separated vocab term with its successor ', function() {
+    // mySystem.spawn();
+    // console.log(mySystem.string);
+    // expect(mySystem.string.length).toBeGreaterThan(1);
+    // });
+    // });
 });

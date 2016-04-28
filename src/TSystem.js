@@ -22,3 +22,10 @@ TSystem.prototype.addVocab = function(key) {
         successor: null
     };
 };
+
+TSystem.prototype.addSuccessor = function(key, succ) {
+    if (this.vocabulary[key] != true) {
+        this.addVocab(key);
+    }
+    this.vocabulary[key].successor = succ;
+};

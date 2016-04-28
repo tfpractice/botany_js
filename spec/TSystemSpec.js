@@ -26,4 +26,17 @@ describe('TSystem', function() {
             expect(mySystem.vocabulary['L']).toBeObject();
         });
     });
+    describe('addSuccessor', function() {
+        describe('when Key doesnt exist', () => {
+            it('creates an entry in the dictionary', function() {
+                mySystem.addSuccessor('R', 'L,+,R,+,L');
+                expect(mySystem.vocabulary['R']).toBeObject();
+            });
+        });
+        it('adds a keys successor string to the vocabulary', function() {
+            mySystem.addSuccessor('R', 'L,+,R,+,L');
+            expect(mySystem.vocabulary['R'].successor).toBeString();
+
+        });
+    });
 });

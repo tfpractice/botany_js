@@ -1,20 +1,8 @@
-function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system) {
-    this.system = system || new DOL({
-        F: 'F,-,F,+,F,+,F,F,-,F,-,F,+,F',
-        '-': '-',
-        '+': '+'
-    }, 'F,-,F,-,F,-,F');
-    DOL.call(this, this.system.vocabulary, this.system.axiom);
+function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
     this.position = new p5.Vector(x, y);
-    this.step = step;
-    this.delta = delta;
     this.startPosition = this.position.copy();
-
     this.hVector = new p5.Vector.fromAngle(head)
-    this.resetMag();
-    this.getHeading();
-
-    this.stepFactor = 0.25;
+    this.system = system;
     this.points = [this.position];
     this.commands = {
         F: this.forward,
@@ -22,9 +10,12 @@ function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system)
         '-': this.clockwise,
         '+': this.counterClockwise
     };
+    TSystem.call(this, this.system.step, this.system.delta, this.system.stepFactor);
+    this.resetMag();
+    this.getHeading();
 }
 
-Turtle.prototype = Object.create(DOL.prototype);
+Turtle.prototype = Object.create(TSystem.prototype);
 
 Turtle.prototype.getHeading = function() {
     this.heading = this.hVector.heading();
@@ -33,19 +24,22 @@ Turtle.prototype.getHeading = function() {
 Turtle.prototype.setDelta = function(dVal) {
     this.delta = dVal;
 };
+
 Turtle.prototype.setStep = function(sVal = 1) {
     this.step = sVal;
     this.resetMag();
 };
+
 Turtle.prototype.resetMag = function() {
     this.hVector.setMag(this.step);
 };
+
 Turtle.prototype.scaleStep = function() {
-    this.step *= this.stepFactor;
+    TSystem.prototype.scaleStep.call(this);
     this.resetMag();
 };
+
 Turtle.prototype.setSystem = function() {
-    // body...
 };
 
 Turtle.prototype.forward = function(draw = true) {
@@ -71,8 +65,12 @@ Turtle.prototype.counterClockwise = function() {
 };
 
 Turtle.prototype.interpret = function() {
+    console.log('calling interpret');
+    console.log(this.splitFilter());
     this.splitFilter().forEach(function(el) {
+        console.log(el);
         if (this.commands[el] != false) {
+            console.log(this.commands[el]);
             this.commands[el].call(this);
         }
     }, this);
@@ -80,8 +78,7 @@ Turtle.prototype.interpret = function() {
 
 Turtle.prototype.spawn = function(depth = 1) {
     for (var i = depth - 1; i >= 0; i--) {
-        DOL.prototype.spawn.call(this);
-        this.scaleStep();
+        TSystem.prototype.spawn.call(this);
     }
 };
 

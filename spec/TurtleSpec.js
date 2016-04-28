@@ -1,11 +1,20 @@
 describe('Turtle', () => {
-    var myTurtle;
+    var myTurtle, mySystem;
     beforeEach(function() {
-        myTurtle = new Turtle(10, 15, 0);
+
+        mySystem = new TSystem(400, Math.PI / 2, 0.25);
+        // mySystem.setAxiom('F,-,F,-,F,-,F');
+        myTurtle = new Turtle(10, 15, 0, mySystem);
+        // myTurtle.setAxiom('F,-,F,-,F,-,F');
+
+        myTurtle.addSuccessor('F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
+        myTurtle.addCommand('F', 'F');
+        // myTurtle.setAxiom('F,-,F,+,F,+,F,F,-,F,-,F,+,F');
+
     });
     describe('init', () => {
-        it('is an instance of DOL', function() {
-            expect(myTurtle instanceof DOL).toBeTrue();
+        it('is an instance of TSystem', function() {
+            expect(myTurtle instanceof TSystem).toBeTrue();
         });
         it('has a position object', function() {
             expect(myTurtle.position).toBeObject();

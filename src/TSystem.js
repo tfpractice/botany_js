@@ -1,4 +1,4 @@
-function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25) {
+function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,F,-,F,-') {
     this.step = step;
     this.delta = delta;
     this.stepFactor = sFactor;
@@ -12,7 +12,7 @@ function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25) {
             successor: '-'
         }
     };
-    this.axiom = new String();
+    this.axiom = ax;
     DOL.call(this, this.vocabulary, this.axiom);
 }
 
@@ -20,15 +20,19 @@ TSystem.prototype = Object.create(DOL.prototype);
 
 TSystem.prototype.addVocab = function(key) {
     this.vocabulary[key] = {
-        command: null,
-        successor: null
+        command: 'F',
+        successor: key
     };
 };
 
 TSystem.prototype.setAxiom = function(ax) {
-    this.axiom = ax;
+    this.string = this.axiom = ax;
     this.createMissingVocab();
     DOL.call(this, this.vocabulary, this.axiom);
+};
+
+TSystem.prototype.scaleStep = function() {
+    this.step *= this.stepFactor;
 };
 
 TSystem.prototype.getMissingVocab = function() {
@@ -93,4 +97,5 @@ TSystem.prototype.spawn = function() {
         }
     }, this);
     this.string = newString;
+    this.scaleStep();
 };

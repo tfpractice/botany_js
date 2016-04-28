@@ -6,12 +6,14 @@ function Turtle(x = 0, y = 0, head = 0, step = 400, delta = Math.PI / 2, system)
     }, 'F,-,F,-,F,-,F');
     DOL.call(this, this.system.vocabulary, this.system.axiom);
     this.position = new p5.Vector(x, y);
-    this.startPosition = this.position.copy();
-    this.hVector = new p5.Vector.fromAngle(head).mult(step);
-    this.getHeading();
-
     this.step = step;
     this.delta = delta;
+    this.startPosition = this.position.copy();
+
+    this.hVector = new p5.Vector.fromAngle(head)
+    this.resetMag();
+    this.getHeading();
+
     this.stepFactor = 0.25;
     this.points = [this.position];
     this.commands = {

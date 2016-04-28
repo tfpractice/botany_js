@@ -54,12 +54,20 @@ describe('TSystem', function() {
         });
     });
     describe('getMissingVocab()', () => {
-        it('returns unaccounted elements', function() {
+        it('returns an array of unaccounted elements', function() {
             expect(mySystem.getMissingVocab()).toBeArray();
         });
     });
     describe('createMissingVocab()', () => {
+        describe('when vocab element is missing', () => {
+            it('lacks the element as a key in dictionary', function() {
+                expect(mySystem.vocabulary['F']).toBeUndefined();
+            });
+        });
         it('adds missing elements to the dictionary', function() {
+            mySystem.setAxiom('F,-,F-,F,-F,-');
+            mySystem.createMissingVocab();
+            expect(mySystem.vocabulary['F']).not.toBeUndefined();
 
         });
     });

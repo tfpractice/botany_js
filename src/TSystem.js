@@ -35,7 +35,11 @@ TSystem.prototype.getMissingVocab = function() {
         return this.vocabulary[el] != true;
     }, this);
 };
-TSystem.prototype.createMissingVocab = function() {};
+TSystem.prototype.createMissingVocab = function() {
+    this.getMissingVocab().forEach(function(el) {
+        this.addVocab(el);
+    }, this);
+};
 TSystem.prototype.addSuccessor = function(key, succ) {
     if (this.vocabulary[key] != true) {
         this.addVocab(key);

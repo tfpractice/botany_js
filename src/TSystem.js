@@ -35,6 +35,20 @@ TSystem.prototype.getMissingVocab = function() {
         return this.vocabulary[el] != true;
     }, this);
 };
+TSystem.prototype.unsuceededVocab = function() {
+    return Object.keys(this.vocabulary).filter(function(el) {
+        console.log(el);
+        return this.vocabulary[el].successor != true;
+    }, this);
+};
+
+TSystem.prototype.uncommmandedVocab = function() {
+    return Object.keys(this.vocabulary).filter(function(el) {
+        console.log(el);
+        return this.vocabulary[el].command != true;
+    }, this);
+};
+
 TSystem.prototype.createMissingVocab = function() {
     this.getMissingVocab().forEach(function(el) {
         this.addVocab(el);

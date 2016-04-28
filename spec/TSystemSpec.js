@@ -71,11 +71,15 @@ describe('TSystem', function() {
 
         });
     });
-    // describe('spawn()', () => {
-    // it('replaces each comma separated vocab term with its successor ', function() {
-    // mySystem.spawn();
-    // console.log(mySystem.string);
-    // expect(mySystem.string.length).toBeGreaterThan(1);
-    // });
-    // });
+
+    describe('unsuceededVocab()', () => {
+        it('returns an array of vocabularyterms with no successor', function() {
+            expect(mySystem.unsuceededVocab()).toBeArray();
+        });
+    });
+    describe('uncommmandedVocab()', () => {
+        it('returns an array of vocabulary terms with no command', function() {
+            expect(mySystem.uncommmandedVocab()).toBeArray();
+        });
+    });
 });

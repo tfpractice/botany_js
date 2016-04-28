@@ -29,3 +29,11 @@ TSystem.prototype.addSuccessor = function(key, succ) {
     }
     this.vocabulary[key].successor = succ;
 };
+
+TSystem.prototype.addCommand = function(key, comm) {
+    if (this.vocabulary[key] != true) {
+        this.addVocab(key);
+    }
+    this.vocabulary[key].command = comm;
+
+};

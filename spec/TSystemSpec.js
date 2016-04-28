@@ -20,13 +20,13 @@ describe('TSystem', function() {
             expect(mySystem.axiom).toBeString();
         });
     });
-    describe('addVocab', function() {
+    describe('addVocab()', function() {
         it('adds a vocabulary term with null commandKey and successor', function() {
             mySystem.addVocab('L');
             expect(mySystem.vocabulary['L']).toBeObject();
         });
     });
-    describe('addSuccessor', function() {
+    describe('addSuccessor()', function() {
         describe('when Key doesnt exist', () => {
             it('creates an entry in the dictionary', function() {
                 mySystem.addSuccessor('R', 'L,+,R,+,L');
@@ -37,6 +37,12 @@ describe('TSystem', function() {
             mySystem.addSuccessor('R', 'L,+,R,+,L');
             expect(mySystem.vocabulary['R'].successor).toBeString();
 
+        });
+    });
+    describe('addCommand()', function() {
+        it('adds a keys command string to the vocabulary', function() {
+            mySystem.addCommand('R', 'F');
+            expect(mySystem.vocabulary['R'].command).toBeString();
         });
     });
 });

@@ -36,7 +36,6 @@ describe('TSystem', function() {
         it('adds a keys successor string to the vocabulary', function() {
             mySystem.addSuccessor('R', 'L,+,R,+,L');
             expect(mySystem.vocabulary['R'].successor).toBeString();
-
         });
     });
     describe('addCommand()', function() {
@@ -48,8 +47,6 @@ describe('TSystem', function() {
     describe('setAxiom', () => {
         it('sets the axiom string', function() {
             mySystem.setAxiom('F,-,F-,F,-F,-');
-            console.log(mySystem.axiom);
-
             expect(mySystem.axiom.length).not.toBe(0);
         });
     });
@@ -65,16 +62,24 @@ describe('TSystem', function() {
             });
         });
         it('adds missing elements to the dictionary', function() {
-            mySystem.setAxiom('F,-,F-,F,-F,-');
+            mySystem.setAxiom('F,-,F-,F,-,F,-');
             mySystem.createMissingVocab();
             expect(mySystem.vocabulary['F']).not.toBeUndefined();
-
         });
     });
-
     describe('unsuceededVocab()', () => {
         it('returns an array of vocabularyterms with no successor', function() {
             expect(mySystem.unsuceededVocab()).toBeArray();
+        });
+    });
+    describe('fullyCommanded()', () => {
+        it('verifies if every vocabulary item has a command value', function() {
+            expect(mySystem.fullyCommanded()).toBeFalse();
+        });
+    });
+    describe('fullySucceeded()', () => {
+        it('verifies if every vocabulary item has a successor value', function() {
+            expect(mySystem.fullySucceeded()).toBeFalse();
         });
     });
     describe('uncommmandedVocab()', () => {

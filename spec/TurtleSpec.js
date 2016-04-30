@@ -6,21 +6,18 @@ describe('Turtle', () => {
         myTurtle = new Turtle(10, 15, 0, mySystem);
     });
     describe('init', () => {
-
         it('has a position object', function() {
             expect(myTurtle.position).toBeObject();
         });
         it('has a heading', function() {
             expect(myTurtle.heading).toBeNumber();
         });
-
         it('has a commands object', function() {
             expect(myTurtle.commands).toBeObject();
         });
         it('has a points array', function() {
             expect(myTurtle.points).toBeArray();
         });
-
         it('has an hVector', function() {
             expect(myTurtle.hVector).toBeObject();
         });
@@ -85,29 +82,24 @@ describe('Turtle', () => {
     });
     describe('getCommand()', () => {
         it('returns the command key for the vocabulary term', function() {
-            // expect(myTurtle.getCommand('F')).toBe();
-            expect(myTurtle.getCommand('F')).toBeString();
+                expect(myTurtle.getCommand('F')).toBeString();
         });
     });
     describe('interpret', () => {
         it('follows each of the commmands provided by the string', function() {
             myTurtle.interpret();
-            //console.log(myTurtle.points);
             expect(myTurtle.points.length).toBe(5);
         });
     });
     describe('spawn', () => {
         it('changes the step by stepFactor', function() {
             var newFact = mySystem.step * Math.pow(mySystem.stepFactor, 1);
-
             myTurtle.spawn();
-            //console.log(myTurtle.points);
             expect(myTurtle.system.step).toBe(newFact);
         });
         describe('when given depth param', () => {
             it('reduces the step by stepFactor^depth', function() {
                 var newFact = mySystem.step * Math.pow(mySystem.stepFactor, 2);
-                console.log(newFact);
                 myTurtle.spawn(2);
                 expect(myTurtle.system.step).toBe(newFact);
             });

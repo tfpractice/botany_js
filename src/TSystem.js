@@ -103,4 +103,5 @@ TSystem.prototype.spawn = function() {
         }
     }, this);
     this.string = newString;
+    this.scaleStep();
 };

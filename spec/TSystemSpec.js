@@ -74,6 +74,11 @@ describe('TSystem', function() {
             expect(mySystem.semantic("F")).toBeTrue();
         });
     });
+    describe('semFilter', () => {
+        it('returns an array of all semantic terms in string', function() {
+            expect(mySystem.semFilter()).toBeArray();
+        });
+    });
     describe('getMissingVocab()', () => {
         it('returns an array of unaccounted elements', function() {
             expect(mySystem.getMissingVocab()).toBeArray();

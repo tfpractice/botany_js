@@ -52,9 +52,14 @@ TSystem.prototype.semantic = function(term) {
             break;
         default:
             result = true;
-            break;
     }
     return result;
+};
+
+TSystem.prototype.semFilter = function() {
+    return this.splitFilter().filter(function(term) {
+        return this.semantic(term) == true;
+    }, this);
 };
 
 TSystem.prototype.getMissingVocab = function() {

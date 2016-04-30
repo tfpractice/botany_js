@@ -80,8 +80,11 @@ Turtle.prototype.getCommand = function(term) {
 
 Turtle.prototype.spawn = function(depth = 1) {
     for (var i = depth - 1; i >= 0; i--) {
-        TSystem.prototype.spawn.call(this);
+        // TSystem.prototype.spawn.call(this);
+        this.system.spawn();
     }
+    this.string = this.system.string;
+    this.resetMag();
 };
 
 Turtle.prototype.display = function() {

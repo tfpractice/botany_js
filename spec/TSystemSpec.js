@@ -23,6 +23,18 @@ describe('TSystem', function() {
             expect(mySystem.stepFactor).toBeNumber();
         });
     });
+    describe('setDelta', function() {
+        it('assigns the delta value', function() {
+            mySystem.setDelta(Math.PI / 4);
+            expect(mySystem.delta).toBe(Math.PI / 4);
+        });
+    });
+    describe('setStep', function() {
+        it('assigns the step value', function() {
+            mySystem.setStep(20);
+            expect(mySystem.step).toBe(20);
+        });
+    });
     describe('addVocab()', function() {
         it('adds a vocabulary term with null commandKey and successor', function() {
             mySystem.addVocab('L', 'F', 'L,+,R,+,L');

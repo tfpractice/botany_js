@@ -10,8 +10,8 @@ function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
         '-': this.clockwise,
         '+': this.counterClockwise
     };
-    TSystem.call(this, this.system.step, this.system.delta, this.system.stepFactor);
-    this.copyVocab(system);
+    // TSystem.call(this, this.system.step, this.system.delta, this.system.stepFactor);
+    // this.copyVocab(system);
     this.resetMag();
     this.getHeading();
 }
@@ -20,21 +20,13 @@ Turtle.prototype = Object.create(TSystem.prototype);
 
 Turtle.prototype.sysUpdate = function(sys) {
     this.system = sys;
+    // this.copyVocab();
 };
 Turtle.prototype.copyVocab = function(system) {
     this.vocabulary = system.vocabulary;
 };
 Turtle.prototype.getHeading = function() {
     this.heading = this.hVector.heading();
-};
-
-Turtle.prototype.setDelta = function(dVal) {
-    this.delta = dVal;
-};
-
-Turtle.prototype.setStep = function(sVal = 1) {
-    this.step = sVal;
-    this.resetMag();
 };
 
 Turtle.prototype.resetMag = function() {
@@ -59,12 +51,12 @@ Turtle.prototype.blankForward = function() {
 };
 
 Turtle.prototype.clockwise = function() {
-    this.hVector.rotate(this.delta);
+    this.hVector.rotate(this.system.delta);
     this.getHeading();
 };
 
 Turtle.prototype.counterClockwise = function() {
-    this.hVector.rotate(-1 * (this.delta));
+    this.hVector.rotate(-1 * (this.system.delta));
     this.getHeading();
 };
 

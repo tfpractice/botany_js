@@ -1,16 +1,11 @@
 describe('Turtle', () => {
     var myTurtle, mySystem;
     beforeEach(function() {
-
-        mySystem = new TSystem(400, Math.PI / 2, 0.25);
-        // mySystem.setAxiom('F,-,F,-,F,-,F');
+        mySystem = new TSystem(400, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
+        // myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
         myTurtle = new Turtle(10, 15, 0, mySystem);
-        // myTurtle.setAxiom('F,-,F,-,F,-,F');
-
-        myTurtle.addSuccessor('F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
-        myTurtle.addCommand('F', 'F');
-        // myTurtle.setAxiom('F,-,F,+,F,+,F,F,-,F,-,F,+,F');
-
+        // myTurtle.addSuccessor('F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
+        myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
     });
     describe('init', () => {
         it('is an instance of TSystem', function() {
@@ -78,7 +73,6 @@ describe('Turtle', () => {
         });
         it('adds a point to the points array', function() {
             myTurtle.forward();
-
             expect(myTurtle.points.length).toBe(2);
         });
     });
@@ -100,28 +94,35 @@ describe('Turtle', () => {
             expect(myTurtle.heading).toBe((Math.PI / -2));
         });
     });
+    describe('getCommand()', () => {
+        it('returns the command key for the vocabulary term', function() {
+
+        });
+    });
     describe('interpret', () => {
         it('follows each of the commmands provided by the string', function() {
             myTurtle.interpret();
+            console.log(myTurtle.points);
             expect(myTurtle.points.length).toBe(5);
         });
     });
     describe('spawn', () => {
         it('changes the step by stepFactor', function() {
             myTurtle.spawn();
+            console.log(myTurtle.points);
             expect(myTurtle.step).toBe(100);
         });
         describe('when given depth param', () => {
             it('reduces the step by stepFactor^depth', function() {
                 myTurtle.spawn(2);
+                console.log(myTurtle.vocabulary);
                 expect(myTurtle.step).toBe(25);
             });
         });
     });
     describe('display()', () => {
         it('draws lines between each of the points', function() {
-            // myTurtle.spawn(1);
-            // myTurtle.interpret();
+            myTurtle.spawn(2);
             myTurtle.display();
         });
     });

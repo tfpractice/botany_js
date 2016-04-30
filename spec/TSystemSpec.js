@@ -25,7 +25,7 @@ describe('TSystem', function() {
     });
     describe('addVocab()', function() {
         it('adds a vocabulary term with null commandKey and successor', function() {
-            mySystem.addVocab('L');
+            mySystem.addVocab('L', 'F', 'L,+,R,+,L');
             expect(mySystem.vocabulary['L']).toBeObject();
         });
     });
@@ -33,61 +33,62 @@ describe('TSystem', function() {
         describe('when Key doesnt exist', () => {
             it('creates an entry in the dictionary', function() {
                 mySystem.addSuccessor('R', 'L,+,R,+,L');
-                expect(mySystem.vocabulary['R']).toBeObject();
+                expect(mySystem.vocabulary['R'].successor).toBeObject();
             });
         });
         it('adds a keys successor string to the vocabulary', function() {
             mySystem.addSuccessor('R', 'L,+,R,+,L');
-            expect(mySystem.vocabulary['R'].successor).toBeString();
+            expect(mySystem.vocabulary['R'].successor).toEqual('L,+,R,+,L');
         });
     });
-    describe('addCommand()', function() {
-        it('adds a keys command string to the vocabulary', function() {
-            mySystem.addCommand('R', 'F');
-            expect(mySystem.vocabulary['R'].command).toBeString();
+});
+describe('addCommand()', function() {
+    it('adds a keys command string to the vocabulary', function() {
+        mySystem.addCommand('R', 'F');
+        expect(mySystem.vocabulary['R'].command).toBeString();
+    });
+});
+describe('setAxiom', () => {
+    it('sets the axiom string', function() {
+        mySystem.setAxiom('F,-,F-,F,-F,-');
+        expect(mySystem.axiom.length).not.toBe(0);
+    });
+});
+describe('getMissingVocab()', () => {
+    it('returns an array of unaccounted elements', function() {
+        expect(mySystem.getMissingVocab()).toBeArray();
+    });
+});
+describe('createMissingVocab()', () => {
+    describe('when vocab element is missing', () => {
+        it('lacks the element as a key in dictionary', function() {
+            expect(mySystem.vocabulary['F']).toBeUndefined();
         });
     });
-    describe('setAxiom', () => {
-        it('sets the axiom string', function() {
-            mySystem.setAxiom('F,-,F-,F,-F,-');
-            expect(mySystem.axiom.length).not.toBe(0);
-        });
+    it('adds missing elements to the dictionary', function() {
+        mySystem.setAxiom('F,-,F-,F,-,F,-');
+        mySystem.createMissingVocab();
+        expect(mySystem.vocabulary['F']).not.toBeUndefined();
     });
-    describe('getMissingVocab()', () => {
-        it('returns an array of unaccounted elements', function() {
-            expect(mySystem.getMissingVocab()).toBeArray();
-        });
+});
+describe('unsuceededVocab()', () => {
+    it('returns an array of vocabularyterms with no successor', function() {
+        expect(mySystem.unsuceededVocab()).toBeArray();
     });
-    describe('createMissingVocab()', () => {
-        describe('when vocab element is missing', () => {
-            it('lacks the element as a key in dictionary', function() {
-                expect(mySystem.vocabulary['F']).toBeUndefined();
-            });
-        });
-        it('adds missing elements to the dictionary', function() {
-            mySystem.setAxiom('F,-,F-,F,-,F,-');
-            mySystem.createMissingVocab();
-            expect(mySystem.vocabulary['F']).not.toBeUndefined();
-        });
+});
+describe('fullyCommanded()', () => {
+    it('verifies if every vocabulary item has a command value', function() {
+        expect(mySystem.fullyCommanded()).toBeFalse();
     });
-    describe('unsuceededVocab()', () => {
-        it('returns an array of vocabularyterms with no successor', function() {
-            expect(mySystem.unsuceededVocab()).toBeArray();
-        });
+});
+describe('fullySucceeded()', () => {
+    it('verifies if every vocabulary item has a successor value', function() {
+        expect(mySystem.fullySucceeded()).toBeFalse();
     });
-    describe('fullyCommanded()', () => {
-        it('verifies if every vocabulary item has a command value', function() {
-            expect(mySystem.fullyCommanded()).toBeFalse();
-        });
-    });
-    describe('fullySucceeded()', () => {
-        it('verifies if every vocabulary item has a successor value', function() {
-            expect(mySystem.fullySucceeded()).toBeFalse();
-        });
-    });
-    describe('uncommmandedVocab()', () => {
-        it('returns an array of vocabulary terms with no command', function() {
-            expect(mySystem.uncommmandedVocab()).toBeArray();
-        });
-    });
+});
+describe('uncommmandedVocab()', () => {
+it('returns an array of vocabulary terms with no command', function() {
+    expect(mySystem.uncommmandedVocab()).toBeArray();
+});
+});
 });

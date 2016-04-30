@@ -18,17 +18,16 @@ function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,
 
 TSystem.prototype = Object.create(DOL.prototype);
 
-TSystem.prototype.addVocab = function(key) {
+TSystem.prototype.addVocab = function(key, comm = 'F', succ = 'F') {
     this.vocabulary[key] = {
-        command: 'F',
-        successor: key
+        command: comm,
+        successor: succ
     };
 };
 
 TSystem.prototype.setAxiom = function(ax) {
     this.string = this.axiom = ax;
     this.createMissingVocab();
-    DOL.call(this, this.vocabulary, this.axiom);
 };
 
 TSystem.prototype.scaleStep = function() {
@@ -38,6 +37,12 @@ TSystem.prototype.scaleStep = function() {
 TSystem.prototype.getMissingVocab = function() {
     return this.splitFilter().filter(function(el) {
         return this.vocabulary[el] != true;
+    }, this);
+};
+
+TSystem.prototype.createMissingVocab = function() {
+    this.getMissingVocab().forEach(function(el) {
+        this.addVocab(el);
     }, this);
 };
 
@@ -65,12 +70,6 @@ TSystem.prototype.fullyCommanded = function() {
     }, this);
 };
 
-TSystem.prototype.createMissingVocab = function() {
-    this.getMissingVocab().forEach(function(el) {
-        this.addVocab(el);
-    }, this);
-};
-
 TSystem.prototype.addSuccessor = function(key, succ) {
     if (this.vocabulary[key] != true) {
         this.addVocab(key);
@@ -80,8 +79,7 @@ TSystem.prototype.addSuccessor = function(key, succ) {
 
 TSystem.prototype.addCommand = function(key, comm) {
     if (this.vocabulary[key] != true) {
-        this.addVocab(key);
-    }
+    }        this.addVocab(key);
     this.vocabulary[key].command = comm;
 };
 

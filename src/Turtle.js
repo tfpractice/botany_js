@@ -5,8 +5,8 @@ function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
     this.system = system;
     this.points = [this.position];
     this.commands = {
-        F: this.forward,
-        f: this.blankForward,
+        'F': this.forward,
+        'f': this.blankForward,
         '-': this.clockwise,
         '+': this.counterClockwise
     };
@@ -39,15 +39,11 @@ Turtle.prototype.scaleStep = function() {
     this.resetMag();
 };
 
-Turtle.prototype.setSystem = function() {
-};
-
 Turtle.prototype.forward = function(draw = true) {
     this.position = p5.Vector.add(this.position, this.hVector);
     var newPos = this.position;
     this.position.add(this.hVector);
     this.points.push(newPos);
-    this.points.forEach(function(pt) {}, this);
 };
 
 Turtle.prototype.blankForward = function() {
@@ -65,15 +61,16 @@ Turtle.prototype.counterClockwise = function() {
 };
 
 Turtle.prototype.interpret = function() {
-    console.log('calling interpret');
-    console.log(this.splitFilter());
     this.splitFilter().forEach(function(el) {
-        console.log(el);
         if (this.commands[el] != false) {
-            console.log(this.commands[el]);
-            this.commands[el].call(this);
+            var comm = this.getCommand(el);
+            this.commands[comm].call(this);
         }
     }, this);
+};
+
+Turtle.prototype.getCommand = function(term) {
+    return this.vocabulary[term].command;
 };
 
 Turtle.prototype.spawn = function(depth = 1) {

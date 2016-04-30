@@ -2,9 +2,7 @@ describe('Turtle', () => {
     var myTurtle, mySystem;
     beforeEach(function() {
         mySystem = new TSystem(400, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
-        // myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
         myTurtle = new Turtle(10, 15, 0, mySystem);
-        // myTurtle.addSuccessor('F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
         myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
     });
     describe('init', () => {
@@ -96,7 +94,8 @@ describe('Turtle', () => {
     });
     describe('getCommand()', () => {
         it('returns the command key for the vocabulary term', function() {
-
+            // expect(myTurtle.getCommand('F')).toBe();
+            expect(myTurtle.getCommand('F')).toBeString();
         });
     });
     describe('interpret', () => {

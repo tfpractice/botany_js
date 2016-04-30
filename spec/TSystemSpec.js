@@ -70,6 +70,9 @@ describe('TSystem', function() {
         it('returns false if given term is "+", "-", or empty ', function() {
             expect(mySystem.semantic("-")).toBeFalse();
         });
+        it('returns true if given term is not "+", "-", or empty ', function() {
+            expect(mySystem.semantic("F")).toBeTrue();
+        });
     });
     describe('getMissingVocab()', () => {
         it('returns an array of unaccounted elements', function() {

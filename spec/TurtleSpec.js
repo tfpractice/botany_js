@@ -4,33 +4,23 @@ describe('Turtle', () => {
         mySystem = new TSystem(400, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
         mySystem.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
         myTurtle = new Turtle(10, 15, 0, mySystem);
-        // myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
     });
     describe('init', () => {
-        it('is an instance of TSystem', function() {
-            // expect(myTurtle instanceof TSystem).toBeTrue();
-        });
+
         it('has a position object', function() {
             expect(myTurtle.position).toBeObject();
         });
         it('has a heading', function() {
             expect(myTurtle.heading).toBeNumber();
         });
-        it('has a step attribute', function() {
-            // expect(myTurtle.step).toBeNumber();
-        });
-        it('has a delta attr', function() {
-            // expect(myTurtle.delta).toBeNumber();
-        });
+
         it('has a commands object', function() {
             expect(myTurtle.commands).toBeObject();
         });
         it('has a points array', function() {
             expect(myTurtle.points).toBeArray();
         });
-        it('has a stepFactor', function() {
-            // expect(myTurtle.stepFactor).toBe(0.25);
-        });
+
         it('has an hVector', function() {
             expect(myTurtle.hVector).toBeObject();
         });
@@ -115,7 +105,6 @@ describe('Turtle', () => {
         describe('when given depth param', () => {
             it('reduces the step by stepFactor^depth', function() {
                 myTurtle.spawn(2);
-                console.log(myTurtle.vocabulary);
                 expect(myTurtle.system.step).toBe(25);
             });
         });

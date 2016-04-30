@@ -40,7 +40,11 @@ Turtle.prototype.scaleStep = function() {
 };
 
 Turtle.prototype.forward = function(draw = true) {
+    var oldPos = this.position;
+
     this.position = p5.Vector.add(this.position, this.hVector);
+
+    line(oldPos.x, oldPos.y, this.position.x, this.position.y);
     var newPos = this.position;
     this.position.add(this.hVector);
     this.points.push(newPos);

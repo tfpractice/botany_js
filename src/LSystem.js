@@ -19,6 +19,9 @@ function setup() {
     var serpienski = new TSystem(100, Math.PI / 3, 0.33, 'R');
     serpienski.addVocab('R', 'F', '-,L,+,R,+,L');
     serpienski.addVocab('L', 'F', '+,R,-,L,-,R');
+    serpienski.addVocab('-', '-', '+');
+    serpienski.addVocab('+', '+', '-');
+
     myTurtle = new Turtle(windowWidth / 8, windowHeight / 8, 0, island);
 
 
@@ -29,7 +32,7 @@ function setup() {
     // console.log(myTurtle);
     // myTurtle.interpret();
     // serpT.interpret();
-    // serpT.spawn(3);
+    serpT.spawn(3);
     // myTurtle.spawn(3);
     // flakeT.spawn(3);
     // chainT.spawn(3);

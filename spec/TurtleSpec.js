@@ -82,7 +82,7 @@ describe('Turtle', () => {
     });
     describe('getCommand()', () => {
         it('returns the command key for the vocabulary term', function() {
-                expect(myTurtle.getCommand('F')).toBeString();
+            expect(myTurtle.getCommand('F')).toBeString();
         });
     });
     describe('interpret', () => {

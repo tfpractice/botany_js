@@ -2,8 +2,9 @@ describe('Turtle', () => {
     var myTurtle, mySystem;
     beforeEach(function() {
         mySystem = new TSystem(400, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
+        mySystem.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
         myTurtle = new Turtle(10, 15, 0, mySystem);
-        myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
+        // myTurtle.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
     });
     describe('init', () => {
         it('is an instance of TSystem', function() {
@@ -32,6 +33,12 @@ describe('Turtle', () => {
         });
         it('has an hVector', function() {
             expect(myTurtle.hVector).toBeObject();
+        });
+    });
+    describe('copyVocab', () => {
+        it('sets the vocabulary to that of the provided system', function() {
+            myTurtle.copyVocab(mySystem);
+            expect(myTurtle.vocabulary).toEqual(mySystem.vocabulary);
         });
     });
     describe('getHeading()', () => {

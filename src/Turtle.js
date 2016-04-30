@@ -11,12 +11,16 @@ function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
         '+': this.counterClockwise
     };
     TSystem.call(this, this.system.step, this.system.delta, this.system.stepFactor);
+    this.copyVocab(system);
     this.resetMag();
     this.getHeading();
 }
 
 Turtle.prototype = Object.create(TSystem.prototype);
 
+Turtle.prototype.copyVocab = function(system) {
+    this.vocabulary = system.vocabulary;
+};
 Turtle.prototype.getHeading = function() {
     this.heading = this.hVector.heading();
 };

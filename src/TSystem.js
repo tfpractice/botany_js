@@ -2,6 +2,14 @@ function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,
     this.step = step;
     this.delta = delta;
     this.stepFactor = sFactor;
+    // this.vocabulary['+'] = {
+    //     command: '+',
+    //     successor: '+'
+    // };
+    // this.vocabulary['-'] = {
+    //     command: '-',
+    //     successor: '-'
+    // };
     this.vocabulary = {
         '+': {
             command: '+',
@@ -78,8 +86,8 @@ TSystem.prototype.addSuccessor = function(key, succ) {
 };
 
 TSystem.prototype.addCommand = function(key, comm) {
-    if (this.vocabulary[key] != true) {
-    }        this.addVocab(key);
+    if (this.vocabulary[key] != true) {}
+    this.addVocab(key);
     this.vocabulary[key].command = comm;
 };
 

@@ -66,7 +66,7 @@ Turtle.prototype.counterClockwise = function() {
 };
 
 Turtle.prototype.interpret = function() {
-    this.splitFilter().forEach(function(el) {
+    this.system.splitFilter().forEach(function(el) {
         if (this.commands[el] != false) {
             var comm = this.getCommand(el);
             this.commands[comm].call(this);
@@ -75,7 +75,7 @@ Turtle.prototype.interpret = function() {
 };
 
 Turtle.prototype.getCommand = function(term) {
-    return this.vocabulary[term].command;
+    return this.system.vocabulary[term].command;
 };
 
 Turtle.prototype.spawn = function(depth = 1) {

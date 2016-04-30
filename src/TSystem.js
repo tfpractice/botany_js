@@ -2,14 +2,6 @@ function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,
     this.step = step;
     this.delta = delta;
     this.stepFactor = sFactor;
-    // this.vocabulary['+'] = {
-    //     command: '+',
-    //     successor: '+'
-    // };
-    // this.vocabulary['-'] = {
-    //     command: '-',
-    //     successor: '-'
-    // };
     this.vocabulary = {
         '+': {
             command: '+',
@@ -25,6 +17,7 @@ function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,
 }
 
 TSystem.prototype = Object.create(DOL.prototype);
+
 TSystem.prototype.setDelta = function(dVal) {
     this.delta = dVal;
 };
@@ -32,6 +25,7 @@ TSystem.prototype.setDelta = function(dVal) {
 TSystem.prototype.setStep = function(sVal = 1) {
     this.step = sVal;
 };
+
 TSystem.prototype.addVocab = function(key, comm = 'F', succ = 'F') {
     this.vocabulary[key] = {
         command: comm,
@@ -109,5 +103,4 @@ TSystem.prototype.spawn = function() {
         }
     }, this);
     this.string = newString;
-    this.scaleStep();
 };

@@ -42,6 +42,21 @@ TSystem.prototype.scaleStep = function() {
     this.step *= this.stepFactor;
 };
 
+TSystem.prototype.semantic = function(term) {
+    var result;
+    switch (term) {
+        case '+':
+        case '-':
+        case '':
+            result = false;
+            break;
+        default:
+            result = true;
+            break;
+    }
+    return result;
+};
+
 TSystem.prototype.getMissingVocab = function() {
     return this.splitFilter().filter(function(el) {
         return this.vocabulary[el] != true;

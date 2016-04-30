@@ -66,6 +66,11 @@ describe('TSystem', function() {
             expect(mySystem.axiom.length).not.toBe(0);
         });
     });
+    describe('semantic()', () => {
+        it('returns false if given term is "+", "-", or empty ', function() {
+            expect(mySystem.semantic("-")).toBeFalse();
+        });
+    });
     describe('getMissingVocab()', () => {
         it('returns an array of unaccounted elements', function() {
             expect(mySystem.getMissingVocab()).toBeArray();

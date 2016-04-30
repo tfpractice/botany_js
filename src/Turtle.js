@@ -18,6 +18,9 @@ function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
 
 Turtle.prototype = Object.create(TSystem.prototype);
 
+Turtle.prototype.sysUpdate = function(sys) {
+    this.system = sys;
+};
 Turtle.prototype.copyVocab = function(system) {
     this.vocabulary = system.vocabulary;
 };
@@ -80,7 +83,6 @@ Turtle.prototype.getCommand = function(term) {
 
 Turtle.prototype.spawn = function(depth = 1) {
     for (var i = depth - 1; i >= 0; i--) {
-        // TSystem.prototype.spawn.call(this);
         this.system.spawn();
     }
     this.string = this.system.string;

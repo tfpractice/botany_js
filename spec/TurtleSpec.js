@@ -35,6 +35,12 @@ describe('Turtle', () => {
             expect(myTurtle.hVector).toBeObject();
         });
     });
+    describe('sysUpdate', () => {
+        it('sets the system to the param', function() {
+            myTurtle.sysUpdate(mySystem);
+            expect(myTurtle.system).toBe(mySystem);
+        });
+    });
     describe('copyVocab', () => {
         it('sets the vocabulary to that of the provided system', function() {
             myTurtle.copyVocab(mySystem);

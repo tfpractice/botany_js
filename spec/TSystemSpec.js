@@ -79,6 +79,11 @@ describe('TSystem', function() {
             expect(mySystem.semFilter()).toBeArray();
         });
     });
+    describe('segmentCount()', () => {
+        it('returns the length of the given terms successor string', function() {
+            expect(mySystem.segmentCount('F')).toBeNumber();
+        });
+    });
     describe('getMissingVocab()', () => {
         it('returns an array of unaccounted elements', function() {
             expect(mySystem.getMissingVocab()).toBeArray();

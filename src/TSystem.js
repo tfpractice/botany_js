@@ -62,6 +62,9 @@ TSystem.prototype.semFilter = function() {
     }, this);
 };
 
+TSystem.prototype.segmentCount = function(term) {
+    return this.semFilter().length;
+};
 TSystem.prototype.getMissingVocab = function() {
     return this.splitFilter().filter(function(el) {
         return this.vocabulary[el] != true;

@@ -35,7 +35,7 @@ Turtle.prototype.setStep = function(sVal = 1) {
 };
 
 Turtle.prototype.resetMag = function() {
-    this.hVector.setMag(this.step);
+    this.hVector.setMag(this.system.step);
 };
 
 Turtle.prototype.scaleStep = function() {

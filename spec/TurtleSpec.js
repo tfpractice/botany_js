@@ -60,7 +60,7 @@ describe('Turtle', () => {
     });
     describe('resetMag()', () => {
         it('chnages the magnitude of the hVector', function() {
-            myTurtle.step = 20;
+            myTurtle.system.step = 20;
             myTurtle.resetMag();
             expect(myTurtle.hVector.mag()).toBe(20);
         });

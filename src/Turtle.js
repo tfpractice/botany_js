@@ -39,7 +39,8 @@ Turtle.prototype.resetMag = function() {
 };
 
 Turtle.prototype.scaleStep = function() {
-    TSystem.prototype.scaleStep.call(this);
+    this.system.scaleStep();
+    // TSystem.prototype.scaleStep.call(this);
     this.resetMag();
 };
 

@@ -68,7 +68,7 @@ describe('Turtle', () => {
     describe('scaleStep()', () => {
         it('multiplies step by stepFactor and resets mag', function() {
             myTurtle.scaleStep();
-            expect(myTurtle.step).toBe(100);
+            expect(myTurtle.system.step).toBe(100);
         });
     });
     describe('#forward', () => {
@@ -116,13 +116,13 @@ describe('Turtle', () => {
         it('changes the step by stepFactor', function() {
             myTurtle.spawn();
             console.log(myTurtle.points);
-            expect(myTurtle.step).toBe(100);
+            expect(myTurtle.system.step).toBe(100);
         });
         describe('when given depth param', () => {
             it('reduces the step by stepFactor^depth', function() {
                 myTurtle.spawn(2);
                 console.log(myTurtle.vocabulary);
-                expect(myTurtle.step).toBe(25);
+                expect(myTurtle.system.step).toBe(25);
             });
         });
     });

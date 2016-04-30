@@ -20,7 +20,6 @@ Turtle.prototype = Object.create(TSystem.prototype);
 
 Turtle.prototype.sysUpdate = function(sys) {
     this.system = sys;
-    // this.copyVocab();
 };
 Turtle.prototype.copyVocab = function(system) {
     this.vocabulary = system.vocabulary;
@@ -43,11 +42,13 @@ Turtle.prototype.forward = function(draw = true) {
     var oldPos = this.position;
 
     this.position = p5.Vector.add(this.position, this.hVector);
-
-    line(oldPos.x, oldPos.y, this.position.x, this.position.y);
-    var newPos = this.position;
-    this.position.add(this.hVector);
-    this.points.push(newPos);
+    // console.log('oldPos:', oldPos);
+    // console.log('thisPos:', this.position);
+    if (draw == true) {
+        line(oldPos.x, oldPos.y, this.position.x, this.position.y);
+    }
+    // this.position.add(this.hVector);
+    this.points.push(this.position);
 };
 
 Turtle.prototype.blankForward = function() {
@@ -79,7 +80,9 @@ Turtle.prototype.getCommand = function(term) {
 
 Turtle.prototype.spawn = function(depth = 1) {
     for (var i = depth - 1; i >= 0; i--) {
+        this.interpret();
         this.system.spawn();
+
     }
     this.string = this.system.string;
     this.resetMag();
@@ -88,10 +91,10 @@ Turtle.prototype.spawn = function(depth = 1) {
 Turtle.prototype.display = function() {
     this.interpret();
     stroke('#00ff00');
-    beginShape();
-    for (var i = this.points.length - 1; i > 0; i--) {
-        vertex(this.points[i].x, this.points[i].y);
-        vertex(this.points[i - 1].x, this.points[i - 1].y);
-    }
-    endShape(CLOSE);
+    // beginShape();
+    // for (var i = this.points.length - 1; i > 0; i--) {
+    // vertex(this.points[i].x, this.points[i].y);
+    // vertex(this.points[i - 1].x, this.points[i - 1].y);
+    // }
+    // endShape(CLOSE);
 };

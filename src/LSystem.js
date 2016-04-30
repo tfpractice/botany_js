@@ -18,7 +18,7 @@ function setup() {
     myTurtle = new Turtle(windowWidth / 8, windowHeight / 8, 0, island);
     var flakeT = new Turtle(windowWidth / 2, windowHeight / 2, 0, qFlake);
     var chainT = new Turtle(windowWidth / 8, windowHeight / 2, 0, chain);
-    console.log(myTurtle);
+    // console.log(myTurtle);
     // myTurtle.interpret();
     // myTurtle.spawn(3);
     // flakeT.spawn(3);

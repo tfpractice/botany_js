@@ -18,7 +18,6 @@ describe('DOL', () => {
     describe('#spawn', () => {
         it('replaces each comma separated vocab term with its successor ', function() {
             myDOL.spawn();
-            console.log(myDOL.string);
             expect(myDOL.string.length).toBeGreaterThan(1);
         });
     });

@@ -24,6 +24,9 @@ describe('Turtle', () => {
         it('has a tracePoint', function() {
             expect(myTurtle.tracePoint).toBeObject();
         });
+        it('has a tracePoints array', function() {
+            expect(myTurtle.tracePoints).toBeArray();
+        });
     });
     describe('sysUpdate', () => {
         it('sets the system to the param', function() {
@@ -114,4 +117,10 @@ describe('Turtle', () => {
             myTurtle.display();
         });
     });
+    // describe('traceLine', () => {
+    //     it('draws a line bewtween two points', function() {
+    //         var dest = new p5.Vector(300, 400);
+    //         myTurtle.traceLine(myTurtle.startPosition, dest);
+    //     });
+    // });
 });

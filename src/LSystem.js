@@ -1,12 +1,14 @@
-var myTurtle, qFlake;
+var myTurtle, qFlake, src, dest;
 
 function setup() {
-
+    frameRate(20);
 
     createCanvas(windowWidth, windowHeight);
     console.log(windowWidth);
     background(255);
     stroke('#00ff00');
+    src = new p5.Vector(20, 100);
+    dest = new p5.Vector(300, 600);
     // fill('#ff00ff');
     // strokeWeight(4);
     var island = new TSystem(200, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
@@ -24,6 +26,8 @@ function setup() {
     serpienski.addVocab('+', '+', '-');
 
     myTurtle = new Turtle(windowWidth / 8, windowHeight / 8, 0, island);
+
+    // myTurtle.setTrace(src);
     var boxT = new Turtle(windowWidth / 6, windowHeight / 6, 0, box);
 
 
@@ -46,7 +50,16 @@ function setup() {
 
 function draw() {
     // stroke('#ff00ff');
+    // background(128);
+    // traceLine    
+    // for (var i = myTurtle.points.length - 1; i > 0; i--) {
 
+    // myTurtle.display();
+
+    // } // myTurtle.traceLine(myTurtle.startPosition, dest);
+    // console.log(dest);
+    // myTurtle.incrementTrace(src, dest);
+    // console.log(myTurtle.tracePoint);
     // myTurtle.display();
     // background(128);
 

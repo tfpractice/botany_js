@@ -39,7 +39,7 @@ Turtle.prototype.resetMag = function() {
 Turtle.prototype.setTracePoints = function() {
     this.tracePoints = [];
     this.points.forEach(function(pt) {
-        this.tracePoints.push(pt);
+        this.addTP(pt);
     }, this);
 };
 Turtle.prototype.addTP = function(pt) {
@@ -54,11 +54,11 @@ Turtle.prototype.scaleStep = function() {
 Turtle.prototype.forward = function(draw = true) {
     var oldPos = this.position;
     // this.setTrace(oldPos);
-    console.log(oldPos);
+    // console.log(oldPos);
 
     this.position = p5.Vector.add(this.position, this.hVector);
     var newPos = this.position.copy();
-    console.log(newPos); // var fact = this.getLerp(oldPos, newPos);
+    // console.log(newPos); // var fact = this.getLerp(oldPos, newPos);
     // .sub(oldPos);
 
     if (draw == true) {
@@ -96,9 +96,9 @@ Turtle.prototype.forward = function(draw = true) {
 
 // };
 
-// Turtle.prototype.getLerp = function(p1, p2) {
-// return p5.Vector.lerp(p1, p2, 0.05);
-// };
+Turtle.prototype.getLerp = function(p1, p2) {
+    return p5.Vector.lerp(p1, p2, 0.05);
+};
 
 // Turtle.prototype.incrementTrace = function(p1, p2) {
 //     var theta = p5.Vector.angleBetween(p1, p2);
@@ -137,14 +137,18 @@ Turtle.prototype.counterClockwise = function() {
     this.hVector.rotate(-1 * (this.system.delta));
     this.getHeading();
 };
-
+Turtle.prototype.resetPoints = function() {
+    this.points = [];
+};
 Turtle.prototype.interpret = function() {
+    this.resetPoints();
     this.system.splitFilter().forEach(function(el) {
         if (this.commands[el] != false) {
             var comm = this.getCommand(el);
             this.commands[comm].call(this);
         }
     }, this);
+    this.setTracePoints();
 };
 
 Turtle.prototype.getCommand = function(term) {
@@ -155,17 +159,28 @@ Turtle.prototype.spawn = function(depth = 1) {
     for (var i = depth - 1; i >= 0; i--) {
         this.interpret();
         this.system.spawn();
+
     }
     this.string = this.system.string;
     this.resetMag();
 };
 
 Turtle.prototype.display = function() {
-    stroke('#00ff00');
-    this.interpret();
-    // for (var i = this.points.length - 1; i > 0; i--) {
-    // this.setTrace(this.points[i - 1]);
-    // this.incrementTrace(this.points[i - 1], this.points[i]);
-    // }
+    stroke('#ff00ff');
+    // this.interpret();
+    console.log(this.points.length);
+    console.log(this.tracePoints.length);
+    for (var i = this.tracePoints.length - 1; i > 0; i--) {
+        var pTrace = this.tracePoints[i - 1];
+        var p1 = this.points[i - 1];
+        var p2 = this.points[i];
+        var currLerp = this.getLerp(p1, p2).sub(p1);
+        pTrace.add(currLerp);
+        // this.setTrace(this.tracePoints[i - 1]);
+        // console.log(this.points[i]);
+        // console.log(this.tracePoints[i]);
+        line(p1.x, p1.y, pTrace.x, pTrace.y);
+        // this.incrementTrace(this.tracePoints[i - 1], this.tracePoints[i]);
+    }
 
 };

@@ -108,7 +108,7 @@ describe('Turtle', () => {
     describe('interpret', () => {
         it('follows each of the commmands provided by the string', function() {
             myTurtle.interpret();
-            expect(myTurtle.points.length).toBe(5);
+            expect(myTurtle.points.length).toBe(4);
         });
     });
     describe('spawn', () => {

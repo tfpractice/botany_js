@@ -1,4 +1,4 @@
-var myTurtle, qFlake, src, dest;
+var islandT, qFlake, src, dest;
 
 function setup() {
     frameRate(20);
@@ -25,9 +25,9 @@ function setup() {
     serpienski.addVocab('-', '-', '+');
     serpienski.addVocab('+', '+', '-');
 
-    myTurtle = new Turtle(windowWidth / 8, windowHeight / 8, 0, island);
+    islandT = new Turtle(windowWidth / 8, windowHeight / 8, 0, island);
 
-    // myTurtle.setTrace(src);
+    // islandT.setTrace(src);
     var boxT = new Turtle(windowWidth / 6, windowHeight / 6, 0, box);
 
 
@@ -35,15 +35,15 @@ function setup() {
     var flakeT = new Turtle(windowWidth / 2, windowHeight / 2, 0, qFlake);
     var chainT = new Turtle(windowWidth / 8, windowHeight / 2, 0, chain);
     var serpT = new Turtle(windowWidth / 8, windowHeight / 2, 0, serpienski);
-    // console.log(myTurtle);
-    // myTurtle.interpret();
+    // console.log(islandT);
+    // islandT.interpret();
     // serpT.interpret();
     // serpT.spawn(3);
     // boxT.spawn(6);
-    // myTurtle.spawn(3);
+    islandT.spawn();
     // flakeT.spawn(3);
     // chainT.spawn(3);
-    // myTurtle.display();
+    // islandT.display();
     // flakeT.display();
     // chainT.display();
 }
@@ -52,15 +52,15 @@ function draw() {
     // stroke('#ff00ff');
     // background(128);
     // traceLine    
-    // for (var i = myTurtle.points.length - 1; i > 0; i--) {
+    // for (var i = islandT.points.length - 1; i > 0; i--) {
 
-    // myTurtle.display();
+    // islandT.display();
 
-    // } // myTurtle.traceLine(myTurtle.startPosition, dest);
+    // } // islandT.traceLine(islandT.startPosition, dest);
     // console.log(dest);
-    // myTurtle.incrementTrace(src, dest);
-    // console.log(myTurtle.tracePoint);
-    // myTurtle.display();
+    // islandT.incrementTrace(src, dest);
+    // console.log(islandT.tracePoint);
+    // islandT.display();
     // background(128);
 
 

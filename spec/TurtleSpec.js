@@ -34,6 +34,20 @@ describe('Turtle', () => {
             expect(myTurtle.system).toBe(mySystem);
         });
     });
+    describe('setTracePoints', () => {
+        it('copies the points array', function() {
+            var PLen = myTurtle.points.length
+            myTurtle.setTracePoints();
+            expect(myTurtle.tracePoints.length).toBe(PLen);
+        });
+    });
+    describe('addTP', () => {
+        it('adds a new point to the tracePoints array', function() {
+            var PLen = myTurtle.tracePoints.length
+            myTurtle.addTP(myTurtle.position)
+            expect(myTurtle.tracePoints.length).toBe((PLen + 1));
+        });
+    });
     describe('copyVocab', () => {
         it('sets the vocabulary to that of the provided system', function() {
             myTurtle.copyVocab(mySystem);

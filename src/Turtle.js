@@ -14,6 +14,7 @@ function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
     this.getHeading();
     this.tracePoint = this.position.copy();
     this.tracePoints = [];
+    this.setTracePoints();
     // this.addTracePoint(this.position.copy());
 }
 
@@ -35,6 +36,16 @@ Turtle.prototype.resetMag = function() {
     this.hVector.setMag(this.system.step);
 };
 
+Turtle.prototype.setTracePoints = function() {
+    this.tracePoints = [];
+    this.points.forEach(function(pt) {
+        this.tracePoints.push(pt);
+    }, this);
+};
+Turtle.prototype.addTP = function(pt) {
+
+    this.tracePoints.push(pt.copy());
+};
 Turtle.prototype.scaleStep = function() {
     this.system.scaleStep();
     this.resetMag();

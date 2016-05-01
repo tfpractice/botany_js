@@ -21,6 +21,9 @@ describe('Turtle', () => {
         it('has an hVector', function() {
             expect(myTurtle.hVector).toBeObject();
         });
+        it('has a tracePoint', function() {
+            expect(myTurtle.tracePoint).toBeObject();
+        });
     });
     describe('sysUpdate', () => {
         it('sets the system to the param', function() {

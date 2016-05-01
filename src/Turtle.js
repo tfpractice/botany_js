@@ -12,6 +12,7 @@ function Turtle(x = 0, y = 0, head = 0, system = new TSystem()) {
     };
     this.resetMag();
     this.getHeading();
+    this.tracePoint = this.position.copy();
 }
 
 Turtle.prototype = Object.create(TSystem.prototype);

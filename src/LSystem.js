@@ -35,7 +35,7 @@ function setup() {
     // myTurtle.interpret();
     // serpT.interpret();
     // serpT.spawn(3);
-    boxT.spawn(6);
+    // boxT.spawn(6);
     // myTurtle.spawn(3);
     // flakeT.spawn(3);
     // chainT.spawn(3);

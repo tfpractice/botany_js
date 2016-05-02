@@ -1,4 +1,4 @@
-var islandT, qFlake, src, dest;
+var islandT, qFlake, src, dest, show;
 
 function setup() {
     frameRate(20);
@@ -11,7 +11,7 @@ function setup() {
     dest = new p5.Vector(300, 600);
     // fill('#ff00ff');
     // strokeWeight(4);
-    var island = new TSystem(200, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
+    var island = new TSystem(100, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
     island.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
     var qFlake = new TSystem(200, Math.PI / 2, 0.25, '-,F');
     qFlake.addVocab('F', 'F', 'F,+,F,-,F,-,F,+,F');
@@ -40,12 +40,23 @@ function setup() {
     // serpT.interpret();
     // serpT.spawn(3);
     // boxT.spawn(6);
-    islandT.spawn();
+    islandT.spawn(2);
     // flakeT.spawn(3);
     // chainT.spawn(3);
     // islandT.display();
     // flakeT.display();
     // chainT.display();
+    // display(22);
+}
+
+function mousePressed() {
+    // set our isDrawing variable equal to true
+    show = true;
+}
+
+function mouseReleased() {
+    // set our isDrawing variable equal to false
+    show = false;
 }
 
 function draw() {
@@ -53,9 +64,10 @@ function draw() {
     // background(128);
     // traceLine    
     // for (var i = islandT.points.length - 1; i > 0; i--) {
-
-    // islandT.display();
-
+    // display
+    if (show == true) {
+        islandT.display();
+    }
     // } // islandT.traceLine(islandT.startPosition, dest);
     // console.log(dest);
     // islandT.incrementTrace(src, dest);

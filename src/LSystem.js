@@ -11,7 +11,7 @@ function setup() {
     dest = new p5.Vector(300, 600);
     // fill('#ff00ff');
     // strokeWeight(4);
-    var island = new TSystem(100, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
+    var island = new TSystem(10, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
     island.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
     var qFlake = new TSystem(200, Math.PI / 2, 0.25, '-,F');
     qFlake.addVocab('F', 'F', 'F,+,F,-,F,-,F,+,F');
@@ -40,7 +40,7 @@ function setup() {
     // serpT.interpret();
     // serpT.spawn(3);
     // boxT.spawn(6);
-    islandT.spawn(2);
+    islandT.spawn(4);
     // flakeT.spawn(3);
     // chainT.spawn(3);
     // islandT.display();

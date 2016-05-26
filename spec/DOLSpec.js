@@ -1,5 +1,5 @@
 describe('DOL', () => {
-    var myDOL = new DOL({
+    var myDOL = new Botany.DOL({
         a: 'ab',
         b: 'a'
     }, 'a');
@@ -41,7 +41,7 @@ describe('DOL', () => {
                 br: 'ar',
                 bl: 'al'
             };
-            anabela = new DOL(anaHash, 'ar');
+            anabela = new Botany.DOL(anaHash, 'ar');
         });
         it('has four vocabulary terms', function() {
             expect(Object.keys(anabela.vocabulary).length).toBe(4);

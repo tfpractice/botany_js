@@ -1,14 +1,14 @@
 /**
- * The global Botany module
- * @global
+ *
+ * The global Botany namespace
+ * @module Botany
+ * @namse
  * @return {Object} Botany module
  */
 var Botany = (function() {
-
-
     return {
         /**
-         * @return {Null}
+         * @return {String} module return
          */
         check: function() {
             console.log(this);
@@ -18,11 +18,11 @@ var Botany = (function() {
             this.a = a;
             this.b = b;
         }
-    }
+    };
 })();
-
 /**
- *
+ * @function
+ * @method addAB
  */
 Botany.objConst.prototype.addAB = function() {
     return this.a + this.b;

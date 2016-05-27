@@ -1,12 +1,15 @@
-/** Global botany object
- * @constructor
- 
+/**
+ * The global Botany module
+ * @global
+ * @return {Object} Botany module
  */
-
 var Botany = (function() {
+
+
     return {
-
-
+        /**
+         * @return {Null}
+         */
         check: function() {
             console.log(this);
             return 'module return';
@@ -15,10 +18,12 @@ var Botany = (function() {
             this.a = a;
             this.b = b;
         }
-
     }
 })();
 
+/**
+ *
+ */
 Botany.objConst.prototype.addAB = function() {
     return this.a + this.b;
 };

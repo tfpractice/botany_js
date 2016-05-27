@@ -1,9 +1,9 @@
 describe('Turtle', () => {
     var myTurtle, mySystem;
     beforeEach(function() {
-        mySystem = new TSystem(400, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
+        mySystem = new Botany.TSystem(400, Math.PI / 2, 0.25, 'F,-,F,-,F,-,F,-');
         mySystem.addVocab('F', 'F', 'F,-,F,+,F,+,F,F,-,F,-,F,+,F');
-        myTurtle = new Turtle(10, 15, 0, mySystem);
+        myTurtle = new Botany.Turtle(10, 15, 0, mySystem);
     });
     describe('init', () => {
         it('has a position object', function() {

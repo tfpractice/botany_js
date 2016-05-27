@@ -1,3 +1,8 @@
+/** Global botany object
+ * @constructor
+ 
+ */
+
 var Botany = (function() {
     return {
 

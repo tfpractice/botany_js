@@ -1,130 +1,267 @@
-function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,F,-,F,-') {
-    this.step = step;
-    this.delta = delta;
-    this.stepFactor = sFactor;
-    this.vocabulary = {
-        '+': {
-            command: '+',
-            successor: '+'
-        },
-        '-': {
-            command: '-',
-            successor: '-'
-        }
-    };
-    this.axiom = ax;
-    DOL.call(this, this.vocabulary, this.axiom);
-}
-
-TSystem.prototype = Object.create(DOL.prototype);
-
-TSystem.prototype.setDelta = function(dVal) {
-    this.delta = dVal;
-};
-
-TSystem.prototype.setStep = function(sVal = 1) {
-    this.step = sVal;
-};
-
-TSystem.prototype.addVocab = function(key, comm = 'F', succ = 'F') {
-    this.vocabulary[key] = {
-        command: comm,
-        successor: succ
-    };
-};
-
-TSystem.prototype.setAxiom = function(ax) {
-    this.string = this.axiom = ax;
-    this.createMissingVocab();
-};
-
-TSystem.prototype.scaleStep = function() {
-    this.step *= this.stepFactor;
-};
-
-TSystem.prototype.semantic = function(term) {
-    var result;
-    switch (term) {
-        case '+':
-        case '-':
-        case '':
-            result = false;
-            break;
-        default:
-            result = true;
+Botany = (function(bMod) {
+    bMod.TSystem = function(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,F,-,F,-') {
+        this.step = step;
+        this.delta = delta;
+        this.stepFactor = sFactor;
+        this.vocabulary = {
+            '+': {
+                command: '+',
+                successor: '+'
+            },
+            '-': {
+                command: '-',
+                successor: '-'
+            }
+        };
+        this.axiom = ax;
+        bMod.DOL.call(this, this.vocabulary, this.axiom);
     }
-    return result;
-};
 
-TSystem.prototype.semFilter = function() {
-    return this.splitFilter().filter(function(term) {
-        return this.semantic(term) == true;
-    }, this);
-};
+    bMod.TSystem.prototype = Object.create(bMod.DOL.prototype);
 
-TSystem.prototype.segmentCount = function(term) {
-    return this.semFilter().length;
-};
-TSystem.prototype.getMissingVocab = function() {
-    return this.splitFilter().filter(function(el) {
-        return this.vocabulary[el] != true;
-    }, this);
-};
+    bMod.TSystem.prototype.setDelta = function(dVal) {
+        this.delta = dVal;
+    };
 
-TSystem.prototype.createMissingVocab = function() {
-    this.getMissingVocab().forEach(function(el) {
-        this.addVocab(el);
-    }, this);
-};
+    bMod.TSystem.prototype.setStep = function(sVal = 1) {
+        this.step = sVal;
+    };
 
-TSystem.prototype.unsuceededVocab = function() {
-    return Object.keys(this.vocabulary).filter(function(el) {
-        return this.vocabulary[el].successor == false;
-    }, this);
-};
+    bMod.TSystem.prototype.addVocab = function(key, comm = 'F', succ = 'F') {
+        this.vocabulary[key] = {
+            command: comm,
+            successor: succ
+        };
+    };
 
-TSystem.prototype.uncommmandedVocab = function() {
-    return Object.keys(this.vocabulary).filter(function(el) {
-        return this.vocabulary[el].command != true;
-    }, this);
-};
+    bMod.TSystem.prototype.setAxiom = function(ax) {
+        this.string = this.axiom = ax;
+        this.createMissingVocab();
+    };
 
-TSystem.prototype.fullySucceeded = function() {
-    return Object.keys(this.vocabulary).every(function(el) {
-        return this.vocabulary[el].successor == true;
-    }, this);
-};
+    bMod.TSystem.prototype.scaleStep = function() {
+        this.step *= this.stepFactor;
+    };
 
-TSystem.prototype.fullyCommanded = function() {
-    return Object.keys(this.vocabulary).every(function(el) {
-        return this.vocabulary[el].command == true;
-    }, this);
-};
+    bMod.TSystem.prototype.semantic = function(term) {
+        var result;
+        switch (term) {
+            case '+':
+            case '-':
+            case '':
+                result = false;
+                break;
+            default:
+                result = true;
+        }
+        return result;
+    };
 
-TSystem.prototype.addSuccessor = function(key, succ) {
-    if (this.vocabulary[key] != true) {
+    bMod.TSystem.prototype.semFilter = function() {
+        return this.splitFilter().filter(function(term) {
+            return this.semantic(term) == true;
+        }, this);
+    };
+
+    bMod.TSystem.prototype.segmentCount = function(term) {
+        return this.semFilter().length;
+    };
+    bMod.TSystem.prototype.getMissingVocab = function() {
+        return this.splitFilter().filter(function(el) {
+            return this.vocabulary[el] != true;
+        }, this);
+    };
+
+    bMod.TSystem.prototype.createMissingVocab = function() {
+        this.getMissingVocab().forEach(function(el) {
+            this.addVocab(el);
+        }, this);
+    };
+
+    bMod.TSystem.prototype.unsuceededVocab = function() {
+        return Object.keys(this.vocabulary).filter(function(el) {
+            return this.vocabulary[el].successor == false;
+        }, this);
+    };
+
+    bMod.TSystem.prototype.uncommmandedVocab = function() {
+        return Object.keys(this.vocabulary).filter(function(el) {
+            return this.vocabulary[el].command != true;
+        }, this);
+    };
+
+    bMod.TSystem.prototype.fullySucceeded = function() {
+        return Object.keys(this.vocabulary).every(function(el) {
+            return this.vocabulary[el].successor == true;
+        }, this);
+    };
+
+    bMod.TSystem.prototype.fullyCommanded = function() {
+        return Object.keys(this.vocabulary).every(function(el) {
+            return this.vocabulary[el].command == true;
+        }, this);
+    };
+
+    bMod.TSystem.prototype.addSuccessor = function(key, succ) {
+        if (this.vocabulary[key] != true) {
+            this.addVocab(key);
+        }
+        this.vocabulary[key].successor = succ;
+    };
+
+    bMod.TSystem.prototype.addCommand = function(key, comm) {
+        if (this.vocabulary[key] != true) {}
         this.addVocab(key);
-    }
-    this.vocabulary[key].successor = succ;
-};
+        this.vocabulary[key].command = comm;
+    };
 
-TSystem.prototype.addCommand = function(key, comm) {
-    if (this.vocabulary[key] != true) {}
-    this.addVocab(key);
-    this.vocabulary[key].command = comm;
-};
+    bMod.TSystem.prototype.spawn = function() {
+        var newString = new String();
+        this.splitFilter().forEach(function(el) {
+            if (this.vocabulary[el].successor != false) {
+                newString += this.vocabulary[el].successor;
+                newString += ',';
+            } else {
+                newString += el;
+                newString += ',';
+            }
+        }, this);
+        this.string = newString;
+        this.scaleStep();
+    };
 
-TSystem.prototype.spawn = function() {
-    var newString = new String();
-    this.splitFilter().forEach(function(el) {
-        if (this.vocabulary[el].successor != false) {
-            newString += this.vocabulary[el].successor;
-            newString += ',';
-        } else {
-            newString += el;
-            newString += ',';
-        }
-    }, this);
-    this.string = newString;
-    this.scaleStep();
-};
+
+
+    return bMod;
+})(Botany);
+
+// function TSystem(step = 200, delta = Math.PI / 2, sFactor = 0.25, ax = 'F,-,F,-,F,-,F,-') {
+//     this.step = step;
+//     this.delta = delta;
+//     this.stepFactor = sFactor;
+//     this.vocabulary = {
+//         '+': {
+//             command: '+',
+//             successor: '+'
+//         },
+//         '-': {
+//             command: '-',
+//             successor: '-'
+//         }
+//     };
+//     this.axiom = ax;
+//     DOL.call(this, this.vocabulary, this.axiom);
+// }
+
+// TSystem.prototype = Object.create(DOL.prototype);
+
+// TSystem.prototype.setDelta = function(dVal) {
+//     this.delta = dVal;
+// };
+
+// TSystem.prototype.setStep = function(sVal = 1) {
+//     this.step = sVal;
+// };
+
+// TSystem.prototype.addVocab = function(key, comm = 'F', succ = 'F') {
+//     this.vocabulary[key] = {
+//         command: comm,
+//         successor: succ
+//     };
+// };
+
+// TSystem.prototype.setAxiom = function(ax) {
+//     this.string = this.axiom = ax;
+//     this.createMissingVocab();
+// };
+
+// TSystem.prototype.scaleStep = function() {
+//     this.step *= this.stepFactor;
+// };
+
+// TSystem.prototype.semantic = function(term) {
+//     var result;
+//     switch (term) {
+//         case '+':
+//         case '-':
+//         case '':
+//             result = false;
+//             break;
+//         default:
+//             result = true;
+//     }
+//     return result;
+// };
+
+// TSystem.prototype.semFilter = function() {
+//     return this.splitFilter().filter(function(term) {
+//         return this.semantic(term) == true;
+//     }, this);
+// };
+
+// TSystem.prototype.segmentCount = function(term) {
+//     return this.semFilter().length;
+// };
+// TSystem.prototype.getMissingVocab = function() {
+//     return this.splitFilter().filter(function(el) {
+//         return this.vocabulary[el] != true;
+//     }, this);
+// };
+
+// TSystem.prototype.createMissingVocab = function() {
+//     this.getMissingVocab().forEach(function(el) {
+//         this.addVocab(el);
+//     }, this);
+// };
+
+// TSystem.prototype.unsuceededVocab = function() {
+//     return Object.keys(this.vocabulary).filter(function(el) {
+//         return this.vocabulary[el].successor == false;
+//     }, this);
+// };
+
+// TSystem.prototype.uncommmandedVocab = function() {
+//     return Object.keys(this.vocabulary).filter(function(el) {
+//         return this.vocabulary[el].command != true;
+//     }, this);
+// };
+
+// TSystem.prototype.fullySucceeded = function() {
+//     return Object.keys(this.vocabulary).every(function(el) {
+//         return this.vocabulary[el].successor == true;
+//     }, this);
+// };
+
+// TSystem.prototype.fullyCommanded = function() {
+//     return Object.keys(this.vocabulary).every(function(el) {
+//         return this.vocabulary[el].command == true;
+//     }, this);
+// };
+
+// TSystem.prototype.addSuccessor = function(key, succ) {
+//     if (this.vocabulary[key] != true) {
+//         this.addVocab(key);
+//     }
+//     this.vocabulary[key].successor = succ;
+// };
+
+// TSystem.prototype.addCommand = function(key, comm) {
+//     if (this.vocabulary[key] != true) {}
+//     this.addVocab(key);
+//     this.vocabulary[key].command = comm;
+// };
+
+// TSystem.prototype.spawn = function() {
+//     var newString = new String();
+//     this.splitFilter().forEach(function(el) {
+//         if (this.vocabulary[el].successor != false) {
+//             newString += this.vocabulary[el].successor;
+//             newString += ',';
+//         } else {
+//             newString += el;
+//             newString += ',';
+//         }
+//     }, this);
+//     this.string = newString;
+//     this.scaleStep();
+// };

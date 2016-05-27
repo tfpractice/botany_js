@@ -1,7 +1,7 @@
 describe('TSystem', function() {
     var mySystem;
     beforeEach(function() {
-        mySystem = new TSystem(400, Math.PI / 2);
+        mySystem = new Botany.TSystem(400, Math.PI / 2);
     });
     describe('init', function() {
         it('has a step', function() {

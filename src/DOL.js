@@ -1,11 +1,11 @@
 Botany = (function(
     /**
      * Lindemeyer System functions for Botany module.
-     * @augments Botany
      */
     bMod) {
     /**
      * Creates a Directed Ordered Lindemeyer System
+     * @augments {module.Botany}
      * @constructor module:Botany.DOL
      * @param {Object} [vocab = {a:'a'}] DOL.vocabulary
      * @param {String} [axiom = 'a'] DOL.axiom
@@ -43,7 +43,7 @@ Botany = (function(
     };
 
     /**
-     * alters the Botany.DOL#string according to the vocabulary
+     * alters #string according to the vocabulary succesors
      * @method module:Botany.DOL#spawn
      */
     bMod.DOL.prototype.spawn = function() {

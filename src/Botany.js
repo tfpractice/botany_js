@@ -2,7 +2,6 @@
  *
  * The global Botany namespace
  * @module Botany
- * @namse
  * @return {Object} Botany module
  */
 var Botany = (function() {
@@ -17,7 +16,7 @@ var Botany = (function() {
         objConst: function objConst(a, b) {
             this.a = a;
             this.b = b;
-        }
+        },
     };
 })();
 /**

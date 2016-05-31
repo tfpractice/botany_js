@@ -210,7 +210,7 @@ Botany = (function(
     };
 
     /**
-     * alters #string according to the vocabulary succesors, scales step by stepFactor
+     * alters string according to the vocabulary succesors, scales step by stepFactor
      * @method module:Botany.TSystem#spawn
      */
     bMod.TSystem.prototype.spawn = function() {
